@@ -116,6 +116,8 @@ module Bolt
         input_method = implementation['input_method']
         extra_files = implementation['files']
 
+        arguments['_target'] = target.to_h.reject { |_, v| v.nil? }
+
         in_tmpdir(target.options['tmpdir']) do |dir|
           if extra_files.empty?
             script = File.join(dir, File.basename(executable))
